@@ -1,0 +1,123 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*head=NULL;
+struct node1
+{
+    int data;
+    struct node1 *next;
+}*head1=NULL;
+void create()
+{
+    int ch;
+    do
+    {
+        struct node *new_node,*current;
+        new_node=(struct node*)malloc(sizeof(struct node));
+        printf("\nEnter data:");
+        scanf("%d",&new_node->data);
+        new_node->next=NULL;
+        if(head==NULL)
+        {
+            head=new_node;
+            current=new_node;
+        }
+        else
+        {
+            current->next=new_node;
+            current=new_node;
+        }
+        printf("\nDo you want to continue?(1 for Yes 0 for No):");
+        scanf("%d",&ch);
+    }while(ch!=0);
+}
+void create1()
+{
+    int ch;
+    do
+    {
+        struct node1 *new_node,*current;
+        new_node=(struct node1*)malloc(sizeof(struct node1));
+        printf("\nEnter data:");
+        scanf("%d",&new_node->data);
+        new_node->next=NULL;
+        if(head1==NULL)
+        {
+            head1=new_node;
+            current=new_node;
+        }
+        else
+        {
+            current->next=new_node;
+            current=new_node;
+        }
+        printf("\nDo you want to continue?(1 for Yes 0 for No):");
+        scanf("%d",&ch);
+    }while(ch!=0);
+}
+void display(struct node *st)
+{
+    struct node *temp;
+    temp=st;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+void merge()
+{
+    struct node *temp;
+    temp=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+   temp->next=head1;
+   display(head);
+}
+int main()
+{
+    int ch;
+    do
+    {
+        printf("\n1.Create LinkedList 1");
+        printf("\n2.Create LinkedList 2");
+        printf("\n3.Display LinkedList 1");
+        printf("\n4.Display LinkedList 2");
+        printf("\n5.Merge");
+        printf("\n6.Exit");
+        
+        printf("\nEnter choice:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:create();
+                   break;
+            case 2:create1();
+                   break;
+            case 3:display(head);
+                   break;
+            case 4:display(head1);
+                   break;
+            case 5:merge();
+                   break;
+            case 6:break;
+            default:printf("\nWrong choice!!!");
+        }
+    }while(ch!=6);
+
+    return 0;
+}
+
